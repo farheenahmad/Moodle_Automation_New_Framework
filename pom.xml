@@ -113,7 +113,19 @@
 					<configuration>
 						<source>1.8</source>
 						<target>1.8</target>
+						
+						<properties>
+							<!-- Setting ReportNG listeners -->
+							<property>
+								<name>usedefaultlisteners</name>
+								<value>false</value>
+							</property>
+						</properties>
+						<suiteXmlFiles>
+							<suiteXmlFile>src/test/resources/${testngXml}</suiteXmlFile>
+						</suiteXmlFiles>
 					</configuration>
+					
 				</plugin>
 			</plugins>
 		</pluginManagement>
