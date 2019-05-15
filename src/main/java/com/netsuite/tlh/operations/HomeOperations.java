@@ -24,8 +24,8 @@ public class HomeOperations extends MenuBarOperations implements
 		SoftAssert softAssert = new SoftAssert();
 		softAssert.assertTrue(homePage.isHomeLabelDisplayed(),
 				"Home Label NOT displayed");
-		softAssert.assertTrue(homePage.isHomeIconDisplayed(),
-				"Home icon NOT displayed");
+		//softAssert.assertTrue(homePage.isHomeIconDisplayed(),
+				//"Home icon NOT displayed");
 		softAssert.assertAll();
 		return this;
 	}
