@@ -15,6 +15,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		rightNavOperations.getRestoreCoursePage();
 		Navigator.doRestore(createBackupData);	
+		
 	}
 	
 	@Test(priority=2,description = "MFD-223 ::MFD-264 ::Enrolling the Users", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
