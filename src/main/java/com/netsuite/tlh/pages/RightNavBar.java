@@ -189,7 +189,7 @@ public class RightNavBar extends BasePage {
 	}
 	
 	public RightNavBar clickOnFacilitationManagerDashboardLink() throws Throwable {
-		
+		Thread.sleep(3000);
 		waitForElementToBeVisibile(facilitationManagerDashboardLink);
 		waitForElementToBeClickable(facilitationManagerDashboardLink);
 		facilitationManagerDashboardLink.click();
