@@ -19,10 +19,6 @@ import com.framework.exceptions.DriverNotInitializedException;
 public class BrowserFactory {
 	public static Logger log = Logger.getLogger(BrowserFactory.class);
 	private static WebDriver Driver;
-	
-	public static final String USERNAME = "farheen8";
-	public static final String AUTOMATE_KEY = "oPxNSDVBm9MqYWbYyztD";
-	public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
 	private BrowserFactory() {
 	}
@@ -38,9 +34,9 @@ public class BrowserFactory {
 				Driver = new FirefoxDriver();
 				break;
 			case chrome:
-				// System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
-				// + "/src/test/resources/chromedriver.exe");
-				WebDriverManager.chromedriver().setup();
+				 System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
+				 + "/src/test/resources/chromedriver.exe");
+				/*WebDriverManager.chromedriver().setup();
 				Map<String, Object> prefs = new HashMap<String, Object>();
 				String download_folder = "src/test/resources/testdata/downloads";
 				prefs.put("credentials_enable_service", false);
@@ -50,21 +46,20 @@ public class BrowserFactory {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", prefs);
 				options.addArguments("disable-infobars");
-				Driver = new ChromeDriver(options);
+				Driver = new ChromeDriver(options);*/
 				
-				
-				/*DesiredCapabilities caps = new DesiredCapabilities();
-			    caps.setCapability("browser", "Chrome");
-			    caps.setCapability("browser_version", "74.0");
-			    caps.setCapability("os", "Windows");
-			    caps.setCapability("os_version", "10");
-			    caps.setCapability("resolution", "1024x768");
-			    caps.setCapability("name", "Bstack-[Java] Sample Test");
-			    caps.setCapability("browserstack.selenium_version", "3.6.0");
-			    caps.setCapability("browserstack.debug", "true");
+				final ChromeOptions chromeOptions = new ChromeOptions();
+			    chromeOptions.setBinary(System.getProperty("user.dir")+ "/src/test/resources/chromedriver");
+			    chromeOptions.addArguments("--headless");
+			    chromeOptions.addArguments("--disable-gpu");
 
-			     Driver = new RemoteWebDriver(new java.net.URL(URL), caps);*/
-				
+			    final DesiredCapabilities dc = new DesiredCapabilities();
+			    dc.setJavascriptEnabled(true);
+			    dc.setCapability(
+			        ChromeOptions.CAPABILITY, chromeOptions
+			    );
+
+			    Driver = new ChromeDriver(dc);
 				
 				break;
 			}
