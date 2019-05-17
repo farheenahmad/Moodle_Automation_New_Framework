@@ -10,6 +10,8 @@
 	<test name="Moodle_TLH_Automation_Test">
 		<classes>
 			<class name="com.moodle.tlh.tests.AdvancementCoursesMoodleCourseTest">
+			<class name="com.moodle.tlh.tests.ApostopheMoodleCourseTest">
+			<class name="com.moodle.tlh.tests.MoodlePerformanceTest">
 			</class>
 		</classes>
 	</test>

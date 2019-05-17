@@ -13,6 +13,7 @@ public class ApostopheMoodleCourseTest extends BaseTest{
 	public void CreateABackupAndRestoreTheCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 		System.out.println("TCS 1");
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		rightNavOperations.acceptSitePolicyAgreement();
 		rightNavOperations.getRestoreCoursePage();
 		Navigator.doRestore(createBackupData);	
 	}

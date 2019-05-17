@@ -13,6 +13,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 	public void CreateABackupAndRestoreTheCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 		System.out.println("TCS 1");
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
+		rightNavOperations.acceptSitePolicyAgreement();
 		rightNavOperations.getRestoreCoursePage();
 		Navigator.doRestore(createBackupData);	
 		
@@ -193,7 +194,7 @@ public class AdvancementCoursesMoodleCourseTest extends BaseTest{
 		}
 		
 	
-	//@Test(priority=11,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
+	@Test(priority=11,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 		System.out.println("TCS 11");
 		

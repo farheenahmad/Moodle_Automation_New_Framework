@@ -69,6 +69,12 @@ public class RightNavOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public RightNavOperations acceptSitePolicyAgreement() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(RightNavBar.class).acceptSitePolicyAgreement()
+		;
+		return this;	
+	}
+	
 	public RightNavOperations getRestoreCoursePage() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(RightNavBar.class).clickOnSiteAdministrationLink().clickOnSiteAdministrationCourseLink()
 		.clickOnSiteAdministrationRestoreCourseLink();

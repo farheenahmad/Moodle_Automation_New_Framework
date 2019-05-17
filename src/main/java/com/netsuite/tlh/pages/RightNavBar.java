@@ -69,6 +69,22 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//span[contains(text(),'Home')]")
 	private WebElement HomeLink;
 	
+	@FindBy(css = "button[type='Submit']")
+	private WebElement sitePolicuyYesButton;
+	
+	
+	public RightNavBar acceptSitePolicyAgreement() throws Throwable {
+		
+		waitForElementToBeVisibile(HomeLink);
+		waitForElementToBeClickable(HomeLink);
+		BrowserFactory.getDriver().navigate().to("https://advancementcourses-uat.learninghouse.com/user/policy.php");
+		waitForElementToBeVisibile(sitePolicuyYesButton);
+		waitForElementToBeClickable(sitePolicuyYesButton);
+		sitePolicuyYesButton.click();
+		
+		return this;
+	}
+	
 	public RightNavBar clickOnHomeLink() throws Throwable {
 		
 		waitForElementToBeVisibile(HomeLink);

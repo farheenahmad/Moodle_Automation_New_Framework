@@ -502,6 +502,11 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 	}
 	
 	public FacilitationManagerDashboardPage openAssigmentsLink(CreateBackupData createBackupData, int Count) throws Throwable {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+        public Boolean apply(WebDriver driver) {
+        return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+        WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
 		waitForElementToBeVisibile(table);
 		waitForElementToBeClickable(table);
 		Thread.sleep(1000);
@@ -515,23 +520,12 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 				String currentWindow = BrowserFactory.getDriver().getWindowHandle();
 				for(String winHandle : BrowserFactory.getDriver().getWindowHandles()){
 					   if (BrowserFactory.getDriver().switchTo().window(winHandle).getTitle().contains("Assignment:")) {
-						   ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
-					            public Boolean apply(WebDriver driver) {
-					                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-					            }};
-
-					WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
-							wait.until(expectation);
+						   wait.until(expectation);
 							Thread.sleep(4000);
-						  // verifyRubricView();   	   
+						   verifyRubricView();   	   
 					   }}  
 				BrowserFactory.getDriver().switchTo().window(currentWindow);
 		  }
-		  ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
-	            public Boolean apply(WebDriver driver) {
-	                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
-	            }};
-		  WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
 			wait.until(expectation);
 		  gradeAssignment()
 		  .clickOnFetchData()
@@ -739,6 +733,7 @@ public class FacilitationManagerDashboardPage extends MenuBarPage {
 			waitForElementToBePresent(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
 			waitForElementToBeClickable(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]"));
 			BrowserFactory.getDriver().findElement(By.xpath("((//tr[@role='radiogroup'])[" + i + "]//td)[4]")).click();	
+			Thread.sleep(2000);
 		}	
 		return this;
 	}
