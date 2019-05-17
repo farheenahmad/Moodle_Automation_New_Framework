@@ -190,6 +190,7 @@ public class AssignmentsPage extends MenuBarPage {
 	}
 	
 	public AssignmentsPage verifySubmission() throws Throwable {
+		Thread.sleep(3000);
 		waitForElementToBeVisibile(submittedForGradingText);
 		
 	   return this;
