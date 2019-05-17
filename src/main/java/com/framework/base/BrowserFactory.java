@@ -34,9 +34,9 @@ public class BrowserFactory {
 				Driver = new FirefoxDriver();
 				break;
 			case chrome:
-				 System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
-				 + "/src/test/resources/chromedriver.exe");
-				/*WebDriverManager.chromedriver().setup();
+				/* System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
+				 + "/src/test/resources/chromedriver.exe");*/
+				WebDriverManager.chromedriver().setup();
 				Map<String, Object> prefs = new HashMap<String, Object>();
 				String download_folder = "src/test/resources/testdata/downloads";
 				prefs.put("credentials_enable_service", false);
@@ -46,20 +46,7 @@ public class BrowserFactory {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", prefs);
 				options.addArguments("disable-infobars");
-				Driver = new ChromeDriver(options);*/
-				
-				final ChromeOptions chromeOptions = new ChromeOptions();
-			    chromeOptions.setBinary(System.getProperty("user.dir")+ "/src/test/resources/chromedriver");
-			    chromeOptions.addArguments("--headless");
-			    chromeOptions.addArguments("--disable-gpu");
-
-			    final DesiredCapabilities dc = new DesiredCapabilities();
-			    dc.setJavascriptEnabled(true);
-			    dc.setCapability(
-			        ChromeOptions.CAPABILITY, chromeOptions
-			    );
-
-			    Driver = new ChromeDriver(dc);
+				Driver = new ChromeDriver(options);
 				
 				break;
 			}
