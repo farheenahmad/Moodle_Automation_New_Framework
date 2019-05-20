@@ -37,7 +37,7 @@ public class BrowserFactory {
 			case chrome:
 				/* System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
 				 + "/src/test/resources/chromedriver.exe");*/
-				WebDriverManager.chromedriver().setup();
+				/*WebDriverManager.chromedriver().setup();
 				Map<String, Object> prefs = new HashMap<String, Object>();
 				String download_folder = "src/test/resources/testdata/downloads";
 				prefs.put("credentials_enable_service", false);
@@ -47,16 +47,16 @@ public class BrowserFactory {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", prefs);
 				options.addArguments("disable-infobars");
-				Driver = new ChromeDriver(options);
+				Driver = new ChromeDriver(options);*/
 				
-				/*DesiredCapabilities caps = new DesiredCapabilities();
+				DesiredCapabilities caps = new DesiredCapabilities();
 			    caps.setCapability("browser", "Chrome");
 			    caps.setCapability("browser_version", "74.0");
 			    caps.setCapability("os", "Windows");
 			    caps.setCapability("os_version", "10");
 			    caps.setCapability("resolution", "1024x768");
 			   // caps.setCapability("name", "Bstack-[Java] Sample Test");  class name was JavaSample
-			    Driver = new RemoteWebDriver(new java.net.URL(URL), caps);*/
+			    Driver = new RemoteWebDriver(new java.net.URL(URL), caps);
 				
 				break;
 			}
