@@ -19,6 +19,9 @@ import com.framework.exceptions.DriverNotInitializedException;
 public class BrowserFactory {
 	public static Logger log = Logger.getLogger(BrowserFactory.class);
 	private static WebDriver Driver;
+	  public static final String USERNAME = "farheen8";
+	  public static final String AUTOMATE_KEY = "oPxNSDVBm9MqYWbYyztD";
+	  public static final String URL = "https://" + USERNAME + ":" + AUTOMATE_KEY + "@hub-cloud.browserstack.com/wd/hub";
 
 	private BrowserFactory() {
 	}
@@ -28,15 +31,13 @@ public class BrowserFactory {
 		if (Driver == null) {
 			switch (browser) {
 			case firefox:
-				
 				WebDriverManager.firefoxdriver().setup();
-				
 				Driver = new FirefoxDriver();
 				break;
 			case chrome:
 				/* System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")
 				 + "/src/test/resources/chromedriver.exe");*/
-				WebDriverManager.chromedriver().setup();
+				/*WebDriverManager.chromedriver().setup();
 				Map<String, Object> prefs = new HashMap<String, Object>();
 				String download_folder = "src/test/resources/testdata/downloads";
 				prefs.put("credentials_enable_service", false);
@@ -46,7 +47,16 @@ public class BrowserFactory {
 				ChromeOptions options = new ChromeOptions();
 				options.setExperimentalOption("prefs", prefs);
 				options.addArguments("disable-infobars");
-				Driver = new ChromeDriver(options);
+				Driver = new ChromeDriver(options);*/
+				
+				DesiredCapabilities caps = new DesiredCapabilities();
+			    caps.setCapability("browser", "Chrome");
+			    caps.setCapability("browser_version", "74.0");
+			    caps.setCapability("os", "Windows");
+			    caps.setCapability("os_version", "10");
+			    caps.setCapability("resolution", "1024x768");
+			   // caps.setCapability("name", "Bstack-[Java] Sample Test");  class name was JavaSample
+			    Driver = new RemoteWebDriver(new java.net.URL(URL), caps);
 				
 				break;
 			}
@@ -73,9 +83,9 @@ public class BrowserFactory {
 	}
 
 	public static void quitDriver() {
-		//if (Driver != null) {
-			//Driver.quit();
+		if (Driver != null) {
+			Driver.quit();
 			log.info("Driver shut down.. All Browsers closed...");
-		//}
+		}
 	}
 }
