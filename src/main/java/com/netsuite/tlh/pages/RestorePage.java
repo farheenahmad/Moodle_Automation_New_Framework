@@ -1,9 +1,12 @@
 package com.netsuite.tlh.pages;
 
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.LocalFileDetector;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.FindBy;
 import org.testng.asserts.SoftAssert;
 
+import com.framework.base.BrowserFactory;
 import com.framework.exceptions.DriverNotInitializedException;
 import com.framework.utils.SystemConfigurations;
 import com.netsuite.tlh.factory.NetsuiteTLHPageFactory;

@@ -12,6 +12,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 import com.framework.exceptions.DriverNotInitializedException;
@@ -57,12 +58,15 @@ public class BrowserFactory {
 			    caps.setCapability("resolution", "1024x768");
 			   // caps.setCapability("name", "Bstack-[Java] Sample Test");  class name was JavaSample
 			    Driver = new RemoteWebDriver(new java.net.URL(URL), caps);
-				
+			    ((RemoteWebDriver) Driver).setFileDetector(new LocalFileDetector());
+			    
+			    
 				break;
 			}
 
 			Driver.manage().window().maximize();
 			Driver.get(appUrl);
+			
 			log.info("Browser Initialized...");
 		}
 	}
