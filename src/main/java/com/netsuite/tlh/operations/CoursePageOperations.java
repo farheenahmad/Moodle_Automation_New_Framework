@@ -14,6 +14,13 @@ public class CoursePageOperations extends BaseOperations {
 		return this;	
 	}
 	
+
+	public CoursePageOperations deleteRespectiveApostophieCourse() throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(CoursePage.class).clickManageCourseButton().clickDeleteApostropheCourseButton().clickDeleteButton()
+		.clickContinueButton();
+		return this;	
+	}
+	
 	public CoursePageOperations clickTurnEditingOn() throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(CoursePage.class).clickturnEditingOnLink();
 		return this;	

@@ -9,8 +9,7 @@
 
 	<test name="Moodle_TLH_Automation_Test">
 		<classes>
-			<class name="com.moodle.tlh.tests.MoodlePerformanceTest">
-			</class>
+			<class name="com.moodle.tlh.tests.FullRegressionTest"></class>
 		</classes>
 	</test>
 </suite>

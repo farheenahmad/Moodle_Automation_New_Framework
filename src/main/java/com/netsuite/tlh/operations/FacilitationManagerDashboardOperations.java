@@ -14,6 +14,15 @@ public class FacilitationManagerDashboardOperations extends BaseOperations {
 		return this;	
 	}
 	
+	public FacilitationManagerDashboardOperations SmokeTest(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).selectAssignmentStatus(createBackupData.getStatus())
+		.clickFilterButton().verifyTableIspresent()
+		
+		.clickResetButton().selectAssignmentStatus(createBackupData.getStatusUngraded()).clickFilterButton().verifyTableIspresent()
+		;
+		return this;	
+	}
+	
 	public FacilitationManagerDashboardOperations verifyDeleteSubmissionButton(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(FacilitationManagerDashboardPage.class).clickOnFetchData()
 		.selectDateSubmitted().enterCourseCode(createBackupData.getCourseShortName()).clickFilterButton().clickOnDeleteSubmissionButton()

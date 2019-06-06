@@ -36,11 +36,17 @@ public class RightNavBar extends BasePage {
 	@FindBy(xpath = "//h1[contains(text(),'Backup course:')]")
 	private WebElement backUpCoursePageHeading;
 	
-	@FindBy(xpath = "//a[text()='Participants']")
+	@FindBy(xpath = "(//span[text()='Participants'])[2]")
 	private WebElement participantsLink;
+	
+	@FindBy(xpath = "(//span[text()='Participants'])")
+	private WebElement participantsLinkOnly;
 	
 	@FindBy(xpath = "//p//a[text()='Courses']")
 	private WebElement coursesLink;
+	
+	@FindBy(xpath = "//a[text()='All courses']")
+	private WebElement AllcoursesLink;
 	
 	@FindBy(xpath = "//a[contains(text(),'Assignments')]")
 	private WebElement assignmentsLink;
@@ -149,9 +155,34 @@ public class RightNavBar extends BasePage {
     		wait.until(expectation);
 		waitForElementToBeVisibile(participantsLink);
 		waitForElementToBeClickable(participantsLink);
-		participantsLink.sendKeys(Keys.ENTER);
+		JavascriptExecutor js = (JavascriptExecutor)BrowserFactory.getDriver();
+		 js.executeScript("arguments[0].click();", participantsLink);
 		return this;
 	}
+	
+	public RightNavBar clickOnParticipantsOnly() throws Throwable {
+		ExpectedCondition<Boolean> expectation = new ExpectedCondition<Boolean>() {
+            public Boolean apply(WebDriver driver) {
+                return ((JavascriptExecutor) driver).executeScript("return document.readyState").toString().equals("complete");
+            }};
+            WebDriverWait wait = new WebDriverWait(BrowserFactory.getDriver(), 30);
+    		wait.until(expectation);
+		waitForElementToBeVisibile(participantsLinkOnly);
+		waitForElementToBeClickable(participantsLinkOnly);
+		JavascriptExecutor js = (JavascriptExecutor)BrowserFactory.getDriver();
+		 js.executeScript("arguments[0].click();", participantsLinkOnly);
+		return this;
+	}
+	
+		public RightNavBar clickOnAllCourses() throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		Thread.sleep(2000);
+		waitForElementToBeVisibile(AllcoursesLink);
+		waitForElementToBeClickable(AllcoursesLink);
+		Actions act= new Actions(BrowserFactory.getDriver());
+		act.moveToElement(AllcoursesLink).click().build().perform();
+		return this;
+		}
 	
 	public RightNavBar clickOnCourses() throws Throwable {
 		BrowserFactory.getDriver().navigate().refresh();
@@ -174,9 +205,9 @@ public class RightNavBar extends BasePage {
 	
 	public RightNavBar clickOnApostopheCourse() throws Throwable {
 		BrowserFactory.getDriver().navigate().refresh();
-		waitForElementToBePresent(By.xpath("//p//a[contains(text(),'moodle')]"));
-		waitForElementToBeClickable(By.xpath("//p//a[contains(text(),'moodle')]"));
-		BrowserFactory.getDriver().findElement(By.xpath("//p//a[contains(text(),'moodle')]")).click();	
+		waitForElementToBePresent(By.xpath("//span[contains(text(),'moodle')]"));
+		waitForElementToBeClickable(By.xpath("//span[contains(text(),'moodle')]"));
+		BrowserFactory.getDriver().findElement(By.xpath("//span[contains(text(),'moodle')]")).click();	
 		return this;
 	}
 

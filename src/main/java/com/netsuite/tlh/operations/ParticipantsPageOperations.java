@@ -56,6 +56,12 @@ public class ParticipantsPageOperations extends BaseOperations {
 		
 	}
 	
+	public ParticipantsPageOperations clickOnRespectiveCourseFromLeftNav(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
+		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).clickOnRespectiveCourseLeftNav(createBackupData.getCourseShortName());
+		return this;
+		
+	}
+	
 	public ParticipantsPageOperations getStudentName(CreateBackupData createBackupData) throws DriverNotInitializedException, Throwable {
 		NetsuiteTLHPageFactory.getPage(ParticipantsPage.class).getStudentName();
 		return this;

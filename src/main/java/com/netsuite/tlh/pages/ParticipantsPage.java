@@ -1,6 +1,7 @@
 package com.netsuite.tlh.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -114,7 +115,8 @@ public class ParticipantsPage extends BasePage {
 		waitForElementToBeClickable(participantsTable);
 		WebElement ele=BrowserFactory.getDriver().findElement
 		(By.xpath("//td//span//*[contains(text(),'" + Role + "') and @class='quickeditlink']/ancestor::tr//td//a//img[contains(@title, '" + Username + "')]"));
-		ele.click();
+		JavascriptExecutor js = (JavascriptExecutor) BrowserFactory.getDriver(); 
+		js.executeScript("arguments[0].click();", ele);
 		return this;
 	}
 	
@@ -140,6 +142,16 @@ public class ParticipantsPage extends BasePage {
 		waitForElementToBePresent(By.xpath("//p[@class='tree_item branch canexpand']//a"));
 		waitForElementToBeClickable(By.xpath("//p[@class='tree_item branch canexpand']//a"));
 		BrowserFactory.getDriver().findElement(By.xpath("//p[@class='tree_item branch canexpand']//a")).click();	
+		return this;
+	}
+
+	public ParticipantsPage clickOnRespectiveCourseLeftNav(String CourseName) throws Throwable {
+		BrowserFactory.getDriver().navigate().refresh();
+		waitForElementToBePresent(By.xpath("//span[text()='" + CourseName + "']"));
+		waitForElementToBeClickable(By.xpath("//span[text()='" + CourseName + "']"));
+		WebElement ele= BrowserFactory.getDriver().findElement(By.xpath("//span[text()='" + CourseName + "']"));	
+		JavascriptExecutor js = (JavascriptExecutor)BrowserFactory.getDriver();
+		 js.executeScript("arguments[0].click();", ele);
 		return this;
 	}
 	

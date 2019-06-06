@@ -7,10 +7,11 @@ import com.netsuite.tlh.operations.Navigator;
 import com.netsuite.tlh.testdata.CreateBackupData;
 
 
-public class MoodlePerformanceTest extends BaseTest{
+public class FullPerformanceTest extends BaseTest{
 	
 	@Test(priority=1,description = "MFD-221 ::MFD-222 ::Create a backup and Restore for the course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void CreateABackupAndRestoreTheCourse(LinkedHashMap<String, ?> testData) throws Throwable {
+		System.out.println("FullPerformanceTest");
 		System.out.println("1");
 		CreateBackupData createBackupData = Utility.getDataPojo(testData.get("Form"), CreateBackupData.class);
 		rightNavOperations.acceptSitePolicyAgreement();
@@ -46,7 +47,7 @@ public class MoodlePerformanceTest extends BaseTest{
 			.getLoadingDashboardPerformance()
 			.getRefreshDashboardPerformance()
 			.getGradedFilterDashboardPerformance(createBackupData)
-			.getFetchDataDashboardPerformance()
+			//.getFetchDataDashboardPerformance()
 			;	
 			
 		}
@@ -54,7 +55,8 @@ public class MoodlePerformanceTest extends BaseTest{
 	@Test(priority=5,description = "MFD-227 :: Deleting the respective course", dataProvider = "getData", dataProviderClass = com.netsuite.tlh.dataprovider.NetsuiteTLHTestDataProvider.class)
 	public void DeletingTheRespectiveCourse(LinkedHashMap<String, ?> testData) throws Throwable {
 		System.out.println("5");
-		rightNavOperations.clickCoursesLink();
+		rightNavOperations.clickHome();
+		rightNavOperations.clickAllCoursesLink();
 		Navigator.GetCoursePageOperations().deleteRespectiveCourse();
 		
 	}
